@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seja Bem vindo a GARAPATECH </title>
+    <style>
+        /* Variáveis de Tema */
+        
+         :root {
+            --bg-principal: #f4f4f4;
+            --bg-card: #ffffff;
+            --texto: #333;
+            --texto-tabela: #333;
+            --detalhe: #f59e0b;
+            --header-bg: #111827;
+            --nav-bg: #1f2937;
+        }
+        
+        [data-theme="dark"] {
+            --bg-principal: #111827;
+            --bg-card: #1f2937;
+            --texto: #f3f4f6;
+            --texto-tabela: #f3f4f6;
+            --nav-bg: #111827;
+        }
+        /* Configurações Globais */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Cabeçalho */
+        
+        header {
+            background-color: var(--header-bg);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--detalhe);
+        }
+        
+        header h1 {
+            color: var(--detalhe);
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        /* Navegação */
+        
+        nav {
+            background-color: var(--nav-bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--detalhe);
+            color: #111827;
+        }
+        /* Container Principal */
+        
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        /* Banner */
+        
+        .banner {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            color: var(--detalhe);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+            border: 1px solid var(--detalhe);
+        }
+        
+        .banner h2 {
+            font-size: 2rem;
+        }
+        /* Tabela de Produtos */
+        
+        .secao-titulo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .tabela-container {
+            overflow-x: auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--texto-tabela);
+        }
+        
+        th {
+            background-color: #111827;
+            color: var(--detalhe);
+            padding: 1rem;
+            text-align: left;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #444;
+        }
+        
+        [data-theme="light"] td {
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        tr:hover {
+            background-color: rgba(245, 158, 11, 0.1);
+        }
+        /* Botão Estilizado */
+        
+        .btn-comprar {
+            background-color: var(--detalhe);
+            color: #111827;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-comprar:hover {
+            background-color: #d97706;
+            transform: scale(1.05);
+        }
+        /* Formulário */
+        
+        .contato-container {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 3rem auto;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            background-color: var(--bg-principal);
+            color: var(--texto);
+        }
+        
+        input:focus,
+        textarea:focus {
+            border-color: var(--detalhe);
+        }
+        
+        .btn-enviar {
+            width: 100%;
+            background-color: var(--detalhe);
+            color: #111827;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-enviar:hover {
+            background-color: #d97706;
+        }
+        /* Rodapé */
+        
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        /*responsividade*/
+        
+        @media (max-width: 768px) {
+            /* Ajuste do Cabeçalho e Nav */
+            header h1 {
+                font-size: 1.8rem;
+            }
+            nav {
+                flex-direction: column;
+                /* Links um abaixo do outro no mobile */
+                align-items: center;
+                gap: 10px;
+            }
+            nav a {
+                width: 90%;
+                text-align: center;
+                margin: 0;
+            }
+            /* Transformando a Tabela em Cards */
+            /* Isso impede que o usuário tenha que dar scroll lateral para ver os preços */
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 1rem;
+                border-radius: 8px;
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+            td:before {
+                content: attr(data-label);
+                /* Puxa o nome da coluna via HTML */
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: var(--detalhe);
+            }
+            .btn-comprar {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>GARAPATECH</h1>
+    </header>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#contatos">Contatos</a>
+        <a href="carrinho.html">Carrinho</a>
+        <a href="#" id="btn-dark">Modo Escuro</a>
+    </nav>
+
+    <main id="inicio">
+
+        <section class="banner">
+            <h2>PREÇO E QUALIDADE</h2>
+            <h3>VOCÊ SÓ ENCONTRA AQUI!</h3>
+        </section>
+
+        <section id="produtos">
+            <h2 class="secao-titulo">🏷️ Catálogo de Produtos</h2>
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="" Produto><strong>Processador Intel i7</strong></td>
+                            <td data-label="Preço">R$ 1.800,00</td>
+                            <td data-label="Ação"><a class="btn-comprar">Adicionar ao carrinho</a></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Produto"><strong>Placa Mãe AM4 Pcyes</strong></td>
+                            <td data-label="Preço">R$ 450,00</td>
+                            <td data-label="Ação"><a class="btn-comprar">Adicionar ao carrinho</a></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Produto"><strong>SSD 128 GB</strong></td>
+                            <td data-label="Preço">R$ 250,00</td>
+                            <td data-label="Ação"><a class="btn-comprar">Adicionar ao carrinho</a></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Produto"><strong>Monitor 28' LG</strong></td>
+                            <td data-label="Preço">R$ 899,90</td>
+                            <td data-label="Ação"><a class="btn-comprar">Adicionar ao carrinho</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="contatos">
+            <div class="contato-container">
+                <h2 class="secao-titulo" style="margin-bottom: 2rem;">✉️ Fale Conosco</h2>
+                <form action="#">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="msg">Mensagem</label>
+                        <textarea id="msg" rows="4" placeholder="Como podemos ajudar?"></textarea>
+                    </div>
+                    <button onclick="alert('Mensagem enviada!')" type="submit" class="btn-enviar">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p> 2025 GARAPATECH.</p>
+
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
