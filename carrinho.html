@@ -4,275 +4,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrinho</title>
+    <title>Carrinho - GARAPATECH</title>
     <style>
-
+        /* Sistema de cores da GARAPATECH */
+        
+         :root {
+            --bg-principal: #f4f4f4;
+            --bg-card: #ffffff;
+            --texto: #333;
+            --detalhe: #f59e0b;
+            --header-bg: #111827;
+            --nav-bg: #1f2937;
+        }
+        
+        [data-theme="dark"] {
+            --bg-principal: #111827;
+            --bg-card: #1f2937;
+            --texto: #f3f4f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        header {
+            background-color: var(--header-bg);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--detalhe);
+        }
+        
+        header h1 {
+            color: var(--detalhe);
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        nav {
+            background-color: var(--nav-bg);
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--detalhe);
+            color: #111827;
+        }
+        
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .carrinho-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .titulo-carrinho {
+            border-bottom: 2px solid var(--detalhe);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        
+        th {
+            text-align: left;
+            padding: 1rem;
+            background: var(--header-bg);
+            color: var(--detalhe);
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        [data-theme="dark"] td {
+            border-bottom: 1px solid #444;
+        }
+        
+        .resumo-carrinho {
+            text-align: right;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+        }
+        
+        .total-valor {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--detalhe);
+        }
+        
+        .acoes-carrinho {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .btn-acao {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            text-align: center;
+        }
+        
+        .btn-finalizar {
+            background-color: var(--detalhe);
+            color: #111827;
+            flex-grow: 2;
+        }
+        
+        .btn-finalizar:hover {
+            background-color: #d97706;
+            transform: scale(1.02);
+        }
+        
+        .btn-voltar {
+            background-color: #4b5563;
+            color: white;
+            flex-grow: 1;
+        }
+        
+        .btn-remover {
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        @media (max-width: 600px) {
+            .acoes-carrinho {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
 <body>
+
     <header>
         <h1>GARAPATECH</h1>
     </header>
 
-    <!DOCTYPE html>
-    <html lang="pt-BR">
+    <nav>
+        <a href="index.html">Voltar à Loja</a>
+    </nav>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Carrinho - GARAPATECH</title>
-        <style>
-            /* Reutilizando o sistema de cores da GARAPATECH */
-            
-             :root {
-                --bg-principal: #f4f4f4;
-                --bg-card: #ffffff;
-                --texto: #333;
-                --detalhe: #f59e0b;
-                --header-bg: #111827;
-                --nav-bg: #1f2937;
-            }
-            
-            [data-theme="dark"] {
-                --bg-principal: #111827;
-                --bg-card: #1f2937;
-                --texto: #f3f4f6;
-            }
-            
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
-            
-            body {
-                background-color: var(--bg-principal);
-                color: var(--texto);
-                line-height: 1.6;
-            }
-            
-            header {
-                background-color: var(--header-bg);
-                padding: 2rem 1rem;
-                text-align: center;
-                border-bottom: 3px solid var(--detalhe);
-            }
-            
-            header h1 {
-                color: var(--detalhe);
-                font-size: 2.5rem;
-                letter-spacing: 4px;
-                text-transform: uppercase;
-            }
-            
-            nav {
-                background-color: var(--nav-bg);
-                display: flex;
-                justify-content: center;
-                padding: 0.75rem;
-                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav a {
-                color: white;
-                text-decoration: none;
-                padding: 0.5rem 1.5rem;
-                margin: 0 0.5rem;
-                border-radius: 5px;
-                font-weight: bold;
-                transition: 0.3s;
-            }
-            
-            nav a:hover {
-                background-color: var(--detalhe);
-                color: #111827;
-            }
-            
-            main {
-                max-width: 1000px;
-                margin: 2rem auto;
-                padding: 0 1rem;
-            }
-            
-            .carrinho-container {
-                background: var(--bg-card);
-                border-radius: 12px;
-                padding: 2rem;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            }
-            
-            .titulo-carrinho {
-                border-bottom: 2px solid var(--detalhe);
-                padding-bottom: 1rem;
-                margin-bottom: 2rem;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-bottom: 2rem;
-            }
-            
-            th {
-                text-align: left;
-                padding: 1rem;
-                background: var(--header-bg);
-                color: var(--detalhe);
-            }
-            
-            td {
-                padding: 1rem;
-                border-bottom: 1px solid #ddd;
-            }
-            
-            .resumo-carrinho {
-                text-align: right;
-                padding: 2rem;
-                background: rgba(0, 0, 0, 0.03);
-                border-radius: 8px;
-            }
-            
-            .total-valor {
-                font-size: 1.5rem;
-                font-weight: bold;
-                color: var(--detalhe);
-            }
-            
-            .acoes-carrinho {
-                margin-top: 2rem;
-                display: flex;
-                justify-content: space-between;
-                gap: 1rem;
-            }
-            
-            .btn-acao {
-                padding: 1rem 2rem;
-                border-radius: 8px;
-                font-weight: bold;
-                text-decoration: none;
-                cursor: pointer;
-                transition: 0.3s;
-                border: none;
-                text-align: center;
-            }
-            
-            .btn-finalizar {
-                background-color: var(--detalhe);
-                color: #111827;
-                flex-grow: 2;
-            }
-            
-            .btn-finalizar:hover {
-                background-color: #d97706;
-                transform: scale(1.02);
-            }
-            
-            .btn-voltar {
-                background-color: #4b5563;
-                color: white;
-                flex-grow: 1;
-            }
-            
-            .btn-remover {
-                color: #ef4444;
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-weight: bold;
-            }
-            
-            footer {
-                background-color: #111827;
-                color: #9ca3af;
-                text-align: center;
-                padding: 2rem;
-                margin-top: 4rem;
-            }
-            
-            @media (max-width: 600px) {
-                .acoes-carrinho {
-                    flex-direction: column;
-                }
-                th:nth-child(2),
-                td:nth-child(2) {
-                    display: none;
-                }
-                /* Esconde quantidade no mobile para simplificar */
-            }
-        </style>
-    </head>
+    <main>
+        <div class="carrinho-container">
+            <div class="titulo-carrinho">
+                <h2>🛒 Seu Carrinho</h2>
+            </div>
 
-    <body>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Qtd</th>
+                        <th>Subtotal</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabela-carrinho">
+                </tbody>
+            </table>
 
-        <header>
-            <h1>GARAPATECH</h1>
-        </header>
-
-        <nav>
-            <a href="index.html">Voltar à Loja</a>
-            <a href="#">Minha Conta</a>
-        </nav>
-
-        <main>
-            <div class="carrinho-container">
-                <div class="titulo-carrinho">
-                    <h2>🛒 Seu Carrinho</h2>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Qtd</th>
-                            <th>Subtotal</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Processador Intel i7</strong></td>
-                            <td>1</td>
-                            <td>R$ 1.800,00</td>
-                            <td><button class="btn-remover">X</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Monitor 28' LG</strong></td>
-                            <td>1</td>
-                            <td>R$ 899,90</td>
-                            <td><button class="btn-remover">X</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="resumo-carrinho">
-                    <p>Subtotal: R$ 2.699,90</p>
-                    <p>Frete: <span style="color: #10b981;">Grátis</span></p>
-                    <div class="total-valor" style="margin-top: 10px;">
-                        Total: R$ 2.699,90
-                    </div>
-                </div>
-
-                <div class="acoes-carrinho">
-                    <a href="index.html" class="btn-acao btn-voltar">Continuar Comprando</a>
-                    <button onclick="alert('Finalizando sua compra na GARAPATECH...')" class="btn-acao btn-finalizar">Finalizar Pedido</button>
+            <div class="resumo-carrinho">
+                <p>Frete: <span style="color: #10b981; font-weight: bold;">Grátis</span></p>
+                <div class="total-valor" style="margin-top: 10px;">
+                    Total: R$ <span id="valor-total-carrinho">0,00</span>
                 </div>
             </div>
-        </main>
 
-        <footer>
-            <p>© 2026 GARAPATECH. Todos os direitos reservados.</p>
-            <p style="font-size: 0.7rem; margin-top: 10px;">Ambiente Seguro 🔒</p>
-        </footer>
+            <div class="acoes-carrinho">
+                <a href="index.html" class="btn-acao btn-voltar">Continuar Comprando</a>
+                <button onclick="finalizarCompra()" class="btn-acao btn-finalizar">Finalizar Pedido</button>
+            </div>
+        </div>
+    </main>
 
-    </body>
+    <footer>
+        <p>© 2025 GARAPATECH. </p>
 
-    </html>
+    </footer>
 
+    <script>
+        // sincroniza o modo escuro no carrinho ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('garapatech-theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+            atualizarInterfaceCarrinho();
+        });
+
+        function atualizarInterfaceCarrinho() {
+            const tbody = document.getElementById('corpo-tabela-carrinho');
+            const elementoTotal = document.getElementById('valor-total-carrinho');
+
+            let carrinho = JSON.parse(localStorage.getItem('garapatech-carrinho')) || [];
+            tbody.innerHTML = '';
+
+            if (carrinho.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: #777;">Seu carrinho está vazio.</td></tr>`;
+                elementoTotal.innerText = '0,00';
+                return;
+            }
+
+            let valorTotalGeral = 0;
+
+            carrinho.forEach(item => {
+                const subtotal = item.preco * item.quantidade;
+                valorTotalGeral += subtotal;
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${item.nome}</strong></td>
+                    <td>${item.quantidade}</td>
+                    <td>R$ ${subtotal.toFixed(2).replace('.', ',')}</td>
+                    <td><button class="btn-remover" onclick="removerDoCarrinho(${item.id})">X</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            elementoTotal.innerText = valorTotalGeral.toFixed(2).replace('.', ',');
+        }
+
+        function removerDoCarrinho(id) {
+            let carrinho = JSON.parse(localStorage.getItem('garapatech-carrinho')) || [];
+            const index = carrinho.findIndex(item => item.id === id);
+
+            if (index !== -1) {
+                if (carrinho[index].quantidade > 1) {
+                    carrinho[index].quantidade -= 1;
+                } else {
+                    carrinho.splice(index, 1);
+                }
+            }
+
+            localStorage.setItem('garapatech-carrinho', JSON.stringify(carrinho));
+            atualizarInterfaceCarrinho();
+        }
+
+        function finalizarCompra() {
+            alert('Finalizando sua compra na GARAPATECH...');
+            // limpa o carrinho após finalizar
+            localStorage.removeItem('garapatech-carrinho');
+            atualizarInterfaceCarrinho();
+        }
+    </script>
 </body>
 
 </html>

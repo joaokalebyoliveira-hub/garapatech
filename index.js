@@ -45,3 +45,24 @@ close.addEventListener("click", () => {
     container.classList.remove("active");
 
 })
+
+// CARRINHO (ADICIONAR PRODUTOS)
+
+function adicionarAoCarrinho(id, nome, preco) {
+    // pega o carrinho existente ou inicia um vazio
+    let carrinho = JSON.parse(localStorage.getItem('garapatech-carrinho')) || [];
+
+    // confere se o produto já foi adicionado antes
+    const itemExistente = carrinho.find(item => item.id === id);
+
+    if (itemExistente) {
+        itemExistente.quantidade += 1;
+    } else {
+        carrinho.push({ id, nome, preco, quantidade: 1 });
+    }
+
+    // calva a lista atualizada no navegador
+    localStorage.setItem('garapatech-carrinho', JSON.stringify(carrinho));
+
+    alert(`${nome} foi adicionado ao carrinho!`);
+}
