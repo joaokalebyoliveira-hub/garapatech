@@ -297,10 +297,12 @@
         }
 
         function finalizarCompra() {
-            alert('Finalizando sua compra na GARAPATECH...');
-            // limpa o carrinho após finalizar
-            localStorage.removeItem('garapatech-carrinho');
-            atualizarInterfaceCarrinho();
+            const carrinho = JSON.parse(localStorage.getItem('garapatech-carrinho')) || [];
+            if (carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            window.location.href = 'pagamento.html';
         }
     </script>
 </body>

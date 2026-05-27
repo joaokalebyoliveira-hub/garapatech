@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - GARAPATECH</title>
+    <style>
+        /* Sistema de cores da GARAPATECH — idêntico ao carrinho.html */
+        
+         :root {
+            --bg-principal: #f4f4f4;
+            --bg-card: #ffffff;
+            --texto: #333;
+            --detalhe: #f59e0b;
+            --header-bg: #111827;
+            --nav-bg: #1f2937;
+        }
+        
+        [data-theme="dark"] {
+            --bg-principal: #111827;
+            --bg-card: #1f2937;
+            --texto: #f3f4f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        header {
+            background-color: var(--header-bg);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--detalhe);
+        }
+        
+        header h1 {
+            color: var(--detalhe);
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        nav {
+            background-color: var(--nav-bg);
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: var(--detalhe);
+            color: #111827;
+        }
+        
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        /* Layout em duas colunas */
+        
+        .pagamento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 700px) {
+            .pagamento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-titulo {
+            border-bottom: 2px solid var(--detalhe);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* Resumo do pedido */
+        
+        .resumo-lista {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .resumo-lista li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 0.95rem;
+        }
+        
+        [data-theme="dark"] .resumo-lista li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .resumo-lista .nome-item {
+            flex: 1;
+        }
+        
+        .resumo-lista .qtd-item {
+            color: #888;
+            margin: 0 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .resumo-total {
+            text-align: right;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--detalhe);
+            margin-top: 1rem;
+        }
+        
+        .frete-info {
+            text-align: right;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+        
+        .carrinho-vazio {
+            text-align: center;
+            color: #888;
+            padding: 2rem 0;
+        }
+        /* Formulário de pagamento */
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        input,
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1.5px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            background-color: var(--bg-principal);
+            color: var(--texto);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        input:focus,
+        select:focus {
+            border-color: var(--detalhe);
+        }
+        
+        [data-theme="dark"] input,
+        [data-theme="dark"] select {
+            border-color: #374151;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        /* Métodos de pagamento */
+        
+        .metodos {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .metodo-btn {
+            flex: 1;
+            min-width: 80px;
+            padding: 0.6rem 0.5rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background: var(--bg-principal);
+            color: var(--texto);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: 0.2s;
+        }
+        
+        .metodo-btn:hover,
+        .metodo-btn.ativo {
+            border-color: var(--detalhe);
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--detalhe);
+        }
+        /* Seções condicionais de cada método */
+        
+        .secao-metodo {
+            display: none;
+        }
+        
+        .secao-metodo.visivel {
+            display: block;
+        }
+        /* Pix */
+        
+        .pix-area {
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        
+        .pix-qr {
+            width: 160px;
+            height: 160px;
+            margin: 1rem auto;
+            background: white;
+            border: 3px solid var(--detalhe);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #888;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pix-qr svg {
+            width: 130px;
+            height: 130px;
+        }
+        
+        .pix-chave {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px dashed var(--detalhe);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            word-break: break-all;
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+        }
+        
+        .pix-chave:hover {
+            background: rgba(245, 158, 11, 0.2);
+        }
+        
+        .pix-chave-label {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 0.2rem;
+        }
+        
+        .btn-copiar {
+            background: var(--detalhe);
+            color: #111827;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-copiar:hover {
+            background: #d97706;
+        }
+        /* Boleto */
+        
+        .boleto-area {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        
+        .boleto-codigo {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px dashed #aaa;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+            word-break: break-all;
+            letter-spacing: 1px;
+        }
+        
+        [data-theme="dark"] .boleto-codigo {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .info-box {
+            background: rgba(245, 158, 11, 0.08);
+            border-left: 3px solid var(--detalhe);
+            border-radius: 0 8px 8px 0;
+            padding: 0.75rem 1rem;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+            color: var(--texto);
+        }
+        /* Botão finalizar */
+        
+        .btn-finalizar {
+            width: 100%;
+            background-color: var(--detalhe);
+            color: #111827;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-finalizar:hover {
+            background-color: #d97706;
+            transform: scale(1.02);
+        }
+        
+        .btn-finalizar:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-voltar-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #888;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        
+        .btn-voltar-link:hover {
+            color: var(--detalhe);
+        }
+        /* Segurança */
+        
+        .seguranca {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: #10b981;
+            margin-top: 1rem;
+        }
+        /* Modal sucesso */
+        
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.ativo {
+            display: flex;
+        }
+        
+        .modal-box {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            animation: popIn 0.3s ease;
+        }
+        
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal-icone {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-box h2 {
+            color: var(--detalhe);
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-box p {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-btn {
+            background: var(--detalhe);
+            color: #111827;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        
+        .modal-btn:hover {
+            background: #d97706;
+        }
+        
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>GARAPATECH</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="carrinho.html">← Voltar ao Carrinho</a>
+    </nav>
+
+    <main>
+        <div class="pagamento-grid">
+
+            <!-- COLUNA ESQUERDA: Resumo do Pedido -->
+            <div class="card">
+                <div class="card-titulo">🧾 Resumo do Pedido</div>
+                <ul class="resumo-lista" id="resumo-lista">
+                    <li class="carrinho-vazio">Carregando itens...</li>
+                </ul>
+                <p class="frete-info">✓ Frete Grátis</p>
+                <div class="resumo-total">Total: R$ <span id="resumo-total">0,00</span></div>
+            </div>
+
+            <!-- COLUNA DIREITA: Dados de Pagamento -->
+            <div class="card">
+                <div class="card-titulo">💳 Forma de Pagamento</div>
+
+                <!-- Seleção do método -->
+                <div class="metodos">
+                    <button class="metodo-btn ativo" onclick="selecionarMetodo('credito', this)">💳 Crédito</button>
+                    <button class="metodo-btn" onclick="selecionarMetodo('debito', this)">🏦 Débito</button>
+                    <button class="metodo-btn" onclick="selecionarMetodo('pix', this)">⚡ Pix</button>
+                </div>
+
+                <!-- CARTÃO DE CRÉDITO -->
+                <div class="secao-metodo visivel" id="secao-credito">
+                    <div class="form-group">
+                        <label>Número do Cartão</label>
+                        <input type="text" id="num-cartao" placeholder="0000 0000 0000 0000" maxlength="19" oninput="formatarCartao(this)">
+                    </div>
+                    <div class="form-group">
+                        <label>Nome no Cartão</label>
+                        <input type="text" id="nome-cartao" placeholder="Como está impresso no cartão">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Validade</label>
+                            <input type="text" id="validade" placeholder="MM/AA" maxlength="5" oninput="formatarValidade(this)">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" id="cvv" placeholder="000" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Parcelas</label>
+                        <select id="parcelas"></select>
+                    </div>
+                </div>
+
+                <!-- CARTÃO DE DÉBITO -->
+                <div class="secao-metodo" id="secao-debito">
+                    <div class="form-group">
+                        <label>Número do Cartão</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" oninput="formatarCartao(this)">
+                    </div>
+                    <div class="form-group">
+                        <label>Nome no Cartão</label>
+                        <input type="text" placeholder="Como está impresso no cartão">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Validade</label>
+                            <input type="text" placeholder="MM/AA" maxlength="5" oninput="formatarValidade(this)">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" placeholder="000" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PIX -->
+                <div class="secao-metodo" id="secao-pix">
+                    <div class="pix-area">
+                        <p style="font-size:0.9rem; color:#888;">Escaneie o QR Code ou copie a chave Pix</p>
+                        <div class="pix-qr">
+                            <!-- QR Code simulado em SVG -->
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100" height="100" fill="white"/>
+                                <!-- Módulos simulados do QR -->
+                                <g fill="#111827">
+                                    <!-- Finder top-left -->
+                                    <rect x="5" y="5" width="25" height="25"/>
+                                    <rect x="8" y="8" width="19" height="19" fill="white"/>
+                                    <rect x="11" y="11" width="13" height="13"/>
+                                    <!-- Finder top-right -->
+                                    <rect x="70" y="5" width="25" height="25"/>
+                                    <rect x="73" y="8" width="19" height="19" fill="white"/>
+                                    <rect x="76" y="11" width="13" height="13"/>
+                                    <!-- Finder bottom-left -->
+                                    <rect x="5" y="70" width="25" height="25"/>
+                                    <rect x="8" y="73" width="19" height="19" fill="white"/>
+                                    <rect x="11" y="76" width="13" height="13"/>
+                                    <!-- Dados simulados -->
+                                    <rect x="35" y="5" width="4" height="4"/>
+                                    <rect x="43" y="5" width="4" height="4"/>
+                                    <rect x="51" y="5" width="4" height="4"/>
+                                    <rect x="59" y="5" width="4" height="4"/>
+                                    <rect x="35" y="13" width="4" height="4"/>
+                                    <rect x="51" y="13" width="4" height="4"/>
+                                    <rect x="35" y="21" width="4" height="4"/>
+                                    <rect x="43" y="21" width="4" height="4"/>
+                                    <rect x="59" y="21" width="4" height="4"/>
+                                    <rect x="35" y="35" width="4" height="4"/>
+                                    <rect x="43" y="35" width="4" height="4"/>
+                                    <rect x="51" y="35" width="4" height="4"/>
+                                    <rect x="35" y="43" width="4" height="4"/>
+                                    <rect x="59" y="43" width="4" height="4"/>
+                                    <rect x="43" y="51" width="4" height="4"/>
+                                    <rect x="51" y="51" width="4" height="4"/>
+                                    <rect x="59" y="51" width="4" height="4"/>
+                                    <rect x="35" y="59" width="4" height="4"/>
+                                    <rect x="51" y="59" width="4" height="4"/>
+                                    <rect x="67" y="35" width="4" height="4"/>
+                                    <rect x="75" y="35" width="4" height="4"/>
+                                    <rect x="83" y="35" width="4" height="4"/>
+                                    <rect x="67" y="43" width="4" height="4"/>
+                                    <rect x="83" y="43" width="4" height="4"/>
+                                    <rect x="75" y="51" width="4" height="4"/>
+                                    <rect x="83" y="51" width="4" height="4"/>
+                                    <rect x="67" y="59" width="4" height="4"/>
+                                    <rect x="75" y="59" width="4" height="4"/>
+                                    <rect x="5" y="35" width="4" height="4"/>
+                                    <rect x="13" y="35" width="4" height="4"/>
+                                    <rect x="21" y="35" width="4" height="4"/>
+                                    <rect x="5" y="43" width="4" height="4"/>
+                                    <rect x="21" y="43" width="4" height="4"/>
+                                    <rect x="13" y="51" width="4" height="4"/>
+                                    <rect x="21" y="51" width="4" height="4"/>
+                                    <rect x="5" y="59" width="4" height="4"/>
+                                    <rect x="13" y="59" width="4" height="4"/>
+                                    <rect x="43" y="67" width="4" height="4"/>
+                                    <rect x="51" y="67" width="4" height="4"/>
+                                    <rect x="67" y="67" width="4" height="4"/>
+                                    <rect x="83" y="67" width="4" height="4"/>
+                                    <rect x="43" y="75" width="4" height="4"/>
+                                    <rect x="59" y="75" width="4" height="4"/>
+                                    <rect x="75" y="75" width="4" height="4"/>
+                                    <rect x="43" y="83" width="4" height="4"/>
+                                    <rect x="51" y="83" width="4" height="4"/>
+                                    <rect x="67" y="83" width="4" height="4"/>
+                                    <rect x="83" y="83" width="4" height="4"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="pix-chave" onclick="copiarChavePix()">
+                            <div class="pix-chave-label">Chave Pix (CNPJ)</div>
+                            <strong id="chave-pix-texto">107.706.463-28</strong>
+                        </div>
+                        <button class="btn-copiar" onclick="copiarChavePix()">📋 Copiar Chave</button>
+                        <div class="info-box" style="margin-top:1rem; text-align:left;">
+                            ⏱ Após o pagamento, o pedido é confirmado automaticamente em até 5 minutos.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão finalizar -->
+                <button class="btn-finalizar" id="btn-finalizar" onclick="finalizarPagamento()">
+                    Confirmar Pagamento
+                </button>
+
+                <a href="carrinho.html" class="btn-voltar-link">← Voltar ao carrinho</a>
+
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 GARAPATECH.</p>
+    </footer>
+
+    <!-- Modal de Sucesso -->
+    <div class="modal-overlay" id="modal-sucesso">
+        <div class="modal-box">
+            <div class="modal-icone">🎉</div>
+            <h2>Pedido Confirmado!</h2>
+            <p>Obrigado pela sua compra na GARAPATECH. Você receberá um e-mail de confirmação em breve.</p>
+            <button class="modal-btn" onclick="irParaInicio()">Voltar à Loja</button>
+        </div>
+    </div>
+
+    <script>
+        //Pagamento funcional
+        let metodoSelecionadoAtual = 'credito'
+
+        function selecionarMetodo(metodo, btn) {
+            metodoSelecionadoAtual = metodo; // Guarda a escolha atual
+
+            document.querySelectorAll('.metodo-btn').forEach(b => b.classList.remove('ativo'));
+            btn.classList.add('ativo');
+
+            document.querySelectorAll('.secao-metodo').forEach(s => s.classList.remove('visivel'));
+            document.getElementById('secao-' + metodo).classList.add('visivel');
+
+            const btnFinalizar = document.getElementById('btn-finalizar');
+            if (metodo === 'boleto') {
+                btnFinalizar.textContent = 'Gerar Boleto';
+            } else if (metodo === 'pix') {
+                btnFinalizar.textContent = 'Gerar QR Code Pix'; // Alterado para fazer mais sentido
+            } else {
+                btnFinalizar.textContent = 'Confirmar Pagamento';
+            }
+        }
+        // ——— Sincroniza tema ———
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('garapatech-theme');
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+            }
+            carregarResumo();
+            gerarParcelas();
+        });
+
+        // ——— Carrega itens do carrinho no resumo ———
+        function carregarResumo() {
+            const lista = document.getElementById('resumo-lista');
+            const totalEl = document.getElementById('resumo-total');
+            const carrinho = JSON.parse(localStorage.getItem('garapatech-carrinho')) || [];
+
+            lista.innerHTML = '';
+
+            if (carrinho.length === 0) {
+                lista.innerHTML = '<li class="carrinho-vazio">Nenhum item no carrinho.</li>';
+                totalEl.textContent = '0,00';
+                document.getElementById('btn-finalizar').disabled = true;
+                return;
+            }
+
+            let total = 0;
+            carrinho.forEach(item => {
+                const subtotal = item.preco * item.quantidade;
+                total += subtotal;
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span class="nome-item">${item.nome}</span>
+                    <span class="qtd-item">x${item.quantidade}</span>
+                    <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                `;
+                lista.appendChild(li);
+            });
+
+            totalEl.textContent = total.toFixed(2).replace('.', ',');
+            gerarParcelas(total);
+        }
+
+        // ——— Gera opções de parcelamento ———
+        function gerarParcelas(total) {
+            const select = document.getElementById('parcelas');
+            if (!select) return;
+            select.innerHTML = '';
+            const maxParcelas = 12;
+            for (let i = 1; i <= maxParcelas; i++) {
+                const valor = (total / i).toFixed(2).replace('.', ',');
+                const juros = i <= 3 ? 'sem juros' : `com juros`;
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `${i}x de R$ ${valor} ${juros}`;
+                select.appendChild(opt);
+            }
+        }
+
+        // ——— Seleção de método de pagamento ———
+        function selecionarMetodo(metodo, btn) {
+            document.querySelectorAll('.metodo-btn').forEach(b => b.classList.remove('ativo'));
+            btn.classList.add('ativo');
+
+            document.querySelectorAll('.secao-metodo').forEach(s => s.classList.remove('visivel'));
+            document.getElementById('secao-' + metodo).classList.add('visivel');
+
+            const btnFinalizar = document.getElementById('btn-finalizar');
+            if (metodo === 'boleto') {
+                btnFinalizar.textContent = 'Gerar Boleto';
+            } else if (metodo === 'pix') {
+                btnFinalizar.textContent = 'Já Realizei o Pagamento';
+            } else {
+                btnFinalizar.textContent = 'Confirmar Pagamento';
+            }
+        }
+
+        // ——— Máscara do cartão ———
+        function formatarCartao(input) {
+            let v = input.value.replace(/\D/g, '').substring(0, 16);
+            input.value = v.replace(/(.{4})/g, '$1 ').trim();
+        }
+
+        // ——— Máscara da validade ———
+        function formatarValidade(input) {
+            let v = input.value.replace(/\D/g, '').substring(0, 4);
+            if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
+            input.value = v;
+        }
+
+        // ——— Copiar chave Pix ———
+        function copiarChavePix() {
+            const chave = document.getElementById('chave-pix-texto').textContent;
+            navigator.clipboard.writeText(chave).then(() => {
+                alert('Chave Pix copiada: ' + chave);
+            });
+        }
+
+        // ——— Copiar boleto ———
+        function copiarBoleto() {
+            const codigo = document.getElementById('codigo-boleto').textContent.trim();
+            navigator.clipboard.writeText(codigo).then(() => {
+                alert('Código do boleto copiado!');
+            });
+        }
+
+        // ——— Finalizar pagamento ———
+        async function finalizarPagamento() {
+            const carrinho = JSON.parse(localStorage.getItem('garapatech-carrinho')) || [];
+            if (carrinho.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+
+            const btnFinalizar = document.getElementById('btn-finalizar');
+            btnFinalizar.disabled = true;
+            btnFinalizar.textContent = 'Processando...';
+
+            try {
+                // Faz a chamada para o seu backend Node.js
+                const resposta = await fetch('http://localhost:3000/api/processar-pagamento', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        carrinho: carrinho,
+                        metodoPagamento: metodoSelecionadoAtual,
+                        emailUsuario: 'cliente@email.com' // Idealmente capturado por um input de cadastro
+                    })
+                });
+
+                const dados = await resposta.json();
+
+                if (!resposta.ok) {
+                    throw new Error(dados.error || 'Erro ao processar requisição.');
+                }
+
+                // Se o usuário escolheu PIX, renderiza o QR Code real vindo do Mercado Pago
+                if (metodoSelecionadoAtual === 'pix' && dados.sucesso) {
+                    // 1. Substitui o SVG falso pela imagem real em Base64 gerada pelo gateway
+                    const pixQrDiv = document.querySelector('.pix-qr');
+                    pixQrDiv.innerHTML = `<img src="data:image/jpeg;base64,${dados.qrCodeBase64}" style="width: 140px; height: 140px;"/>`;
+
+                    // 2. Atualiza o texto da chave "Copia e Cola" com o código real do PIX
+                    document.getElementById('chave-pix-texto').textContent = dados.qrCode;
+
+                    alert('QR Code do Pix gerado com sucesso! Use o copia e cola ou escaneie o código.');
+
+                    // Opcional: Aqui você pode mudar o texto do botão para o usuário avisar quando pagar
+                    btnFinalizar.disabled = false;
+                    btnFinalizar.textContent = 'Já realizei o pagamento';
+
+                    // Muda o clique do botão para validar o pagamento em vez de gerar outro PIX
+                    btnFinalizar.onclick = verificarStatusPagamentoReal;
+                    return;
+                }
+
+                // Se for cartão de crédito aprovado com sucesso
+                if (metodoSelecionadoAtual === 'credito' && dados.sucesso) {
+                    // Limpa o carrinho apenas após o sucesso confirmado pelo servidor
+                    localStorage.removeItem('garapatech-carrinho');
+                    document.getElementById('modal-sucesso').classList.add('ativo');
+                }
+
+            } catch (erro) {
+                alert('Falha no pagamento: ' + erro.message);
+                btnFinalizar.disabled = false;
+                btnFinalizar.textContent = 'Confirmar Pagamento';
+            }
+        }
+
+        // Função simulada que monitora se o cliente pagou o PIX
+        function verificarStatusPagamentoReal() {
+            // Em sistemas reais, o seu backend recebe um "Webhook" do Mercado Pago avisando do pagamento
+            // E o frontend fica perguntando ao backend se o pagamento mudou de status.
+            localStorage.removeItem('garapatech-carrinho');
+            document.getElementById('modal-sucesso').classList.add('ativo');
+        }
+    </script>
+</body>
+
+</html>

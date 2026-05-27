@@ -61,7 +61,7 @@ function adicionarAoCarrinho(id, nome, preco) {
         carrinho.push({ id, nome, preco, quantidade: 1 });
     }
 
-    // calva a lista atualizada no navegador
+    // salva a lista atualizada no navegador
     localStorage.setItem('garapatech-carrinho', JSON.stringify(carrinho));
 
     alert(`${nome} foi adicionado ao carrinho!`);
