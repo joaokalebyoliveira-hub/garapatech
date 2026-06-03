@@ -16,7 +16,7 @@ const client = new MercadoPagoConfig({
 
 // Banco de dados simulado de produtos para validação de preço (Segurança)
 const PRODUTOS_LOJA = {
-    1: { nome: "Processador Intel i7", preco: 1499.90 },
+    1: { nome: "Processador Intel i7", preco: 1800.90 },
     2: { nome: "Placa-mãe AM4", preco: 699.90 },
     3: { nome: "Memória RAM 16GB", preco: 349.90 },
     4: { nome: "Monitor 28' LG", preco: 899.90 }
@@ -95,7 +95,7 @@ app.post('/api/processar-pagamento', async(req, res) => {
             if (resposta.status === 'approved') {
                 return res.json({ sucesso: true, status: 'approved', metodo: 'credito' });
             } else {
-                return res.status(400).json({ sucesso: false, status: respuesta.status, mensagem: 'Cartão recusado.' });
+                return res.status(400).json({ sucesso: false, status: resposta.status, mensagem: 'Cartão recusado.' });
             }
         }
 

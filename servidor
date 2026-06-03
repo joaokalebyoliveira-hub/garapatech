@@ -1,0 +1,13 @@
+ordem de comandos no terminal
+
+1 Terminal 
+    -  node server.js
+
+2 Terminal
+    - cloudflared tunnel --url http://localhost:3000    
+
+3 Terminal 
+    - npx serve . 
+
+4 Terminal
+    - cloudflared tunnel --url (localhost do 3 terminal Ex:http://localhost:xxxx )

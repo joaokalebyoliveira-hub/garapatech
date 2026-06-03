@@ -556,74 +556,7 @@
                     <div class="pix-area">
                         <p style="font-size:0.9rem; color:#888;">Escaneie o QR Code ou copie a chave Pix</p>
                         <div class="pix-qr">
-                            <!-- QR Code simulado em SVG -->
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" fill="white"/>
-                                <!-- Módulos simulados do QR -->
-                                <g fill="#111827">
-                                    <!-- Finder top-left -->
-                                    <rect x="5" y="5" width="25" height="25"/>
-                                    <rect x="8" y="8" width="19" height="19" fill="white"/>
-                                    <rect x="11" y="11" width="13" height="13"/>
-                                    <!-- Finder top-right -->
-                                    <rect x="70" y="5" width="25" height="25"/>
-                                    <rect x="73" y="8" width="19" height="19" fill="white"/>
-                                    <rect x="76" y="11" width="13" height="13"/>
-                                    <!-- Finder bottom-left -->
-                                    <rect x="5" y="70" width="25" height="25"/>
-                                    <rect x="8" y="73" width="19" height="19" fill="white"/>
-                                    <rect x="11" y="76" width="13" height="13"/>
-                                    <!-- Dados simulados -->
-                                    <rect x="35" y="5" width="4" height="4"/>
-                                    <rect x="43" y="5" width="4" height="4"/>
-                                    <rect x="51" y="5" width="4" height="4"/>
-                                    <rect x="59" y="5" width="4" height="4"/>
-                                    <rect x="35" y="13" width="4" height="4"/>
-                                    <rect x="51" y="13" width="4" height="4"/>
-                                    <rect x="35" y="21" width="4" height="4"/>
-                                    <rect x="43" y="21" width="4" height="4"/>
-                                    <rect x="59" y="21" width="4" height="4"/>
-                                    <rect x="35" y="35" width="4" height="4"/>
-                                    <rect x="43" y="35" width="4" height="4"/>
-                                    <rect x="51" y="35" width="4" height="4"/>
-                                    <rect x="35" y="43" width="4" height="4"/>
-                                    <rect x="59" y="43" width="4" height="4"/>
-                                    <rect x="43" y="51" width="4" height="4"/>
-                                    <rect x="51" y="51" width="4" height="4"/>
-                                    <rect x="59" y="51" width="4" height="4"/>
-                                    <rect x="35" y="59" width="4" height="4"/>
-                                    <rect x="51" y="59" width="4" height="4"/>
-                                    <rect x="67" y="35" width="4" height="4"/>
-                                    <rect x="75" y="35" width="4" height="4"/>
-                                    <rect x="83" y="35" width="4" height="4"/>
-                                    <rect x="67" y="43" width="4" height="4"/>
-                                    <rect x="83" y="43" width="4" height="4"/>
-                                    <rect x="75" y="51" width="4" height="4"/>
-                                    <rect x="83" y="51" width="4" height="4"/>
-                                    <rect x="67" y="59" width="4" height="4"/>
-                                    <rect x="75" y="59" width="4" height="4"/>
-                                    <rect x="5" y="35" width="4" height="4"/>
-                                    <rect x="13" y="35" width="4" height="4"/>
-                                    <rect x="21" y="35" width="4" height="4"/>
-                                    <rect x="5" y="43" width="4" height="4"/>
-                                    <rect x="21" y="43" width="4" height="4"/>
-                                    <rect x="13" y="51" width="4" height="4"/>
-                                    <rect x="21" y="51" width="4" height="4"/>
-                                    <rect x="5" y="59" width="4" height="4"/>
-                                    <rect x="13" y="59" width="4" height="4"/>
-                                    <rect x="43" y="67" width="4" height="4"/>
-                                    <rect x="51" y="67" width="4" height="4"/>
-                                    <rect x="67" y="67" width="4" height="4"/>
-                                    <rect x="83" y="67" width="4" height="4"/>
-                                    <rect x="43" y="75" width="4" height="4"/>
-                                    <rect x="59" y="75" width="4" height="4"/>
-                                    <rect x="75" y="75" width="4" height="4"/>
-                                    <rect x="43" y="83" width="4" height="4"/>
-                                    <rect x="51" y="83" width="4" height="4"/>
-                                    <rect x="67" y="83" width="4" height="4"/>
-                                    <rect x="83" y="83" width="4" height="4"/>
-                                </g>
-                            </svg>
+                            <img src="qrcode-pix.jpg" alt="QR Code Pix" style="width:150px; height:150px; border-radius:8px; display:block;">
                         </div>
                         <div class="pix-chave" onclick="copiarChavePix()">
                             <div class="pix-chave-label">Chave Pix (CNPJ)</div>
@@ -635,16 +568,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="pix-chave" onclick="copiarChavePix()">
+                    <div class="pix-chave-label">Chave Pix (CNPJ)</div>
+                    <strong id="chave-pix-texto">107.706.463-28</strong>
+                </div>
+                <button class="btn-copiar" onclick="copiarChavePix()">📋 Copiar Chave</button>
+                <div class="info-box" style="margin-top:1rem; text-align:left;">
+                    ⏱ Após o pagamento, o pedido é confirmado automaticamente em até 5 minutos.
+                </div>
+            </div>
+        </div>
 
-                <!-- Botão finalizar -->
-                <button class="btn-finalizar" id="btn-finalizar" onclick="finalizarPagamento()">
+        <!-- Botão finalizar -->
+        <button class="btn-finalizar" id="btn-finalizar" onclick="finalizarPagamento()">
                     Confirmar Pagamento
                 </button>
 
-                <a href="carrinho.html" class="btn-voltar-link">← Voltar ao carrinho</a>
+        <a href="carrinho.html" class="btn-voltar-link">← Voltar ao carrinho</a>
 
 
-            </div>
+        </div>
 
         </div>
     </main>
@@ -664,35 +607,16 @@
     </div>
 
     <script>
-        //Pagamento funcional
-        let metodoSelecionadoAtual = 'credito'
+        // Variável global para controlar o método ativo
+        let metodoSelecionadoAtual = 'credito';
 
-        function selecionarMetodo(metodo, btn) {
-            metodoSelecionadoAtual = metodo; // Guarda a escolha atual
-
-            document.querySelectorAll('.metodo-btn').forEach(b => b.classList.remove('ativo'));
-            btn.classList.add('ativo');
-
-            document.querySelectorAll('.secao-metodo').forEach(s => s.classList.remove('visivel'));
-            document.getElementById('secao-' + metodo).classList.add('visivel');
-
-            const btnFinalizar = document.getElementById('btn-finalizar');
-            if (metodo === 'boleto') {
-                btnFinalizar.textContent = 'Gerar Boleto';
-            } else if (metodo === 'pix') {
-                btnFinalizar.textContent = 'Gerar QR Code Pix'; // Alterado para fazer mais sentido
-            } else {
-                btnFinalizar.textContent = 'Confirmar Pagamento';
-            }
-        }
-        // ——— Sincroniza tema ———
+        // ——— Sincroniza tema e inicializa a página ———
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('garapatech-theme');
             if (savedTheme === 'dark') {
                 document.body.setAttribute('data-theme', 'dark');
             }
             carregarResumo();
-            gerarParcelas();
         });
 
         // ——— Carrega itens do carrinho no resumo ———
@@ -743,31 +667,34 @@
             }
         }
 
-        // ——— Seleção de método de pagamento ———
+        // ——— Seleção de método de pagamento (UNIFICADA E CORRIGIDA) ———
         function selecionarMetodo(metodo, btn) {
+            metodoSelecionadoAtual = metodo; // Salva o método clicado corretamente
+
             document.querySelectorAll('.metodo-btn').forEach(b => b.classList.remove('ativo'));
             btn.classList.add('ativo');
 
             document.querySelectorAll('.secao-metodo').forEach(s => s.classList.remove('visivel'));
-            document.getElementById('secao-' + metodo).classList.add('visivel');
+
+            const secaoAlvo = document.getElementById('secao-' + metodo);
+            if (secaoAlvo) {
+                secaoAlvo.classList.add('visivel');
+            }
 
             const btnFinalizar = document.getElementById('btn-finalizar');
-            if (metodo === 'boleto') {
-                btnFinalizar.textContent = 'Gerar Boleto';
-            } else if (metodo === 'pix') {
-                btnFinalizar.textContent = 'Já Realizei o Pagamento';
+            if (metodo === 'pix') {
+                btnFinalizar.textContent = 'Gerar QR Code Pix';
             } else {
                 btnFinalizar.textContent = 'Confirmar Pagamento';
             }
         }
 
-        // ——— Máscara do cartão ———
+        // ——— Máscaras de Formatação ———
         function formatarCartao(input) {
             let v = input.value.replace(/\D/g, '').substring(0, 16);
             input.value = v.replace(/(.{4})/g, '$1 ').trim();
         }
 
-        // ——— Máscara da validade ———
         function formatarValidade(input) {
             let v = input.value.replace(/\D/g, '').substring(0, 4);
             if (v.length >= 3) v = v.substring(0, 2) + '/' + v.substring(2);
@@ -782,15 +709,11 @@
             });
         }
 
-        // ——— Copiar boleto ———
-        function copiarBoleto() {
-            const codigo = document.getElementById('codigo-boleto').textContent.trim();
-            navigator.clipboard.writeText(codigo).then(() => {
-                alert('Código do boleto copiado!');
-            });
+        function irParaInicio() {
+            window.location.href = 'index.html';
         }
 
-        // ——— Finalizar pagamento ———
+        // ——— Finalizar pagamento conectado ao Backend ———
         async function finalizarPagamento() {
             const carrinho = JSON.parse(localStorage.getItem('garapatech-carrinho')) || [];
             if (carrinho.length === 0) {
@@ -802,49 +725,62 @@
             btnFinalizar.disabled = true;
             btnFinalizar.textContent = 'Processando...';
 
+            // Estrutura base enviada ao backend
+            const dadosPagamento = {
+                carrinho: carrinho,
+                metodoPagamento: metodoSelecionadoAtual,
+                emailUsuario: 'cliente@garapatech.com'
+            };
+
+            // Se for cartão, precisamos anexar os dados que o server.js espera
+            if (metodoSelecionadoAtual === 'credito') {
+                const numCartao = document.getElementById('num-cartao').value;
+                if (!numCartao || numCartao.length < 19) {
+                    alert('Por favor, digite um número de cartão válido para os testes.');
+                    btnFinalizar.disabled = false;
+                    btnFinalizar.textContent = 'Confirmar Pagamento';
+                    return;
+                }
+
+                // Nota: Em produção real usamos o SDK do Mercado Pago para gerar este token.
+                // Para testar sua rota Node agora mesmo, usamos um token padrão de teste do sandbox:
+                dadosPagamento.token = 'ff8080814c11e237014c1ff593b57b68';
+                dadosPagamento.parcelas = document.getElementById('parcelas').value || 1;
+                dadosPagamento.bandeira = 'visa';
+            }
+
             try {
-                // Faz a chamada para o seu backend Node.js
                 const resposta = await fetch('http://localhost:3000/api/processar-pagamento', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        carrinho: carrinho,
-                        metodoPagamento: metodoSelecionadoAtual,
-                        emailUsuario: 'cliente@email.com' // Idealmente capturado por um input de cadastro
-                    })
+                    body: JSON.stringify(dadosPagamento)
                 });
 
                 const dados = await resposta.json();
 
                 if (!resposta.ok) {
-                    throw new Error(dados.error || 'Erro ao processar requisição.');
+                    throw new Error(dados.error || dados.mensagem || 'Erro ao processar requisição.');
                 }
 
-                // Se o usuário escolheu PIX, renderiza o QR Code real vindo do Mercado Pago
+                // Se for PIX, exibe o QR Code dinâmico real retornado pelo seu servidor Node
                 if (metodoSelecionadoAtual === 'pix' && dados.sucesso) {
-                    // 1. Substitui o SVG falso pela imagem real em Base64 gerada pelo gateway
                     const pixQrDiv = document.querySelector('.pix-qr');
                     pixQrDiv.innerHTML = `<img src="data:image/jpeg;base64,${dados.qrCodeBase64}" style="width: 140px; height: 140px;"/>`;
 
-                    // 2. Atualiza o texto da chave "Copia e Cola" com o código real do PIX
                     document.getElementById('chave-pix-texto').textContent = dados.qrCode;
 
-                    alert('QR Code do Pix gerado com sucesso! Use o copia e cola ou escaneie o código.');
+                    alert('QR Code do Pix gerado com sucesso pelo Mercado Pago!');
 
-                    // Opcional: Aqui você pode mudar o texto do botão para o usuário avisar quando pagar
                     btnFinalizar.disabled = false;
                     btnFinalizar.textContent = 'Já realizei o pagamento';
-
-                    // Muda o clique do botão para validar o pagamento em vez de gerar outro PIX
                     btnFinalizar.onclick = verificarStatusPagamentoReal;
                     return;
                 }
 
-                // Se for cartão de crédito aprovado com sucesso
+                // Se for Cartão de Crédito aprovado
                 if (metodoSelecionadoAtual === 'credito' && dados.sucesso) {
-                    // Limpa o carrinho apenas após o sucesso confirmado pelo servidor
                     localStorage.removeItem('garapatech-carrinho');
                     document.getElementById('modal-sucesso').classList.add('ativo');
                 }
@@ -852,14 +788,11 @@
             } catch (erro) {
                 alert('Falha no pagamento: ' + erro.message);
                 btnFinalizar.disabled = false;
-                btnFinalizar.textContent = 'Confirmar Pagamento';
+                btnFinalizar.textContent = metodoSelecionadoAtual === 'pix' ? 'Gerar QR Code Pix' : 'Confirmar Pagamento';
             }
         }
 
-        // Função simulada que monitora se o cliente pagou o PIX
         function verificarStatusPagamentoReal() {
-            // Em sistemas reais, o seu backend recebe um "Webhook" do Mercado Pago avisando do pagamento
-            // E o frontend fica perguntando ao backend se o pagamento mudou de status.
             localStorage.removeItem('garapatech-carrinho');
             document.getElementById('modal-sucesso').classList.add('ativo');
         }

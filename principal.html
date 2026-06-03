@@ -1,3 +1,4 @@
+ raw Index · HTML
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -81,6 +82,79 @@
         nav a:hover {
             background-color: var(--detalhe);
             color: #111827;
+        }
+        
+        .nav-busca-wrapper {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 0 0.75rem;
+            margin: 0 0.5rem;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+        
+        .nav-busca-wrapper:focus-within {
+            border-color: var(--detalhe);
+            background-color: rgba(245, 158, 11, 0.08);
+        }
+        
+        .nav-busca-wrapper svg {
+            width: 16px;
+            height: 16px;
+            stroke: #9ca3af;
+            flex-shrink: 0;
+            transition: stroke 0.3s;
+        }
+        
+        .nav-busca-wrapper:focus-within svg {
+            stroke: var(--detalhe);
+        }
+        
+        #campo-busca {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 0.9rem;
+            padding: 0.45rem 0.5rem;
+            width: 180px;
+            transition: width 0.3s;
+        }
+        
+        #campo-busca::placeholder {
+            color: #6b7280;
+        }
+        
+        #campo-busca:focus {
+            width: 220px;
+        }
+        
+        .nenhum-resultado {
+            text-align: center;
+            padding: 2rem;
+            color: #9ca3af;
+            font-style: italic;
+        }
+        
+        .highlight {
+            background-color: rgba(245, 158, 11, 0.3);
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-busca-wrapper {
+                width: 90%;
+                margin: 0;
+            }
+            #campo-busca {
+                width: 100%;
+            }
+            #campo-busca:focus {
+                width: 100%;
+            }
         }
         /* Container Principal */
         
@@ -305,6 +379,12 @@
         <a href="#contatos">Contatos</a>
         <a href="carrinho.html">Carrinho</a>
         <a href="#" id="btn-dark">Modo Escuro</a>
+        <div class="nav-busca-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="campo-busca" placeholder="Buscar produto..." autocomplete="off">
+        </div>
     </nav>
 
     <main id="inicio">
@@ -379,7 +459,7 @@
 
     </footer>
 
-    <script src="index.js "></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
