@@ -299,7 +299,7 @@
         function updateThemeButton() {
             const isDark = document.documentElement.dataset.theme === 'dark';
             const btn = document.getElementById('btn-dark');
-            if (btn) btn.textContent = isDark ? '☀' : '⏾';
+            if (btn) btn.textContent = isDark ? '☀️' : '🌙';
         }
 
         /* Teclado para atalhos do cabeçalho */
