@@ -1,328 +1,1007 @@
- raw Index · HTML
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seja Bem vindo a GARAPATECH </title>
+    <title>GARAPATECH | Assistência Técnica & Eletrônicos</title>
+    <meta name="description" content="Garapatech - Assistência técnica especializada e loja de eletrônicos.">
     <style>
-        /* Variáveis de Tema */
-        
-         :root {
+        /* =========================================================
+           IDENTIDADE VISUAL
+        ========================================================== */
+
+        :root {
             --bg-principal: #f4f4f4;
             --bg-card: #ffffff;
             --texto: #333;
+            --texto-secundario: #666;
             --texto-tabela: #333;
             --detalhe: #f59e0b;
+            --detalhe-hover: #d97706;
+            --detalhe-soft: rgba(245, 158, 11, 0.12);
             --header-bg: #111827;
             --nav-bg: #1f2937;
+            --borda: #e5e7eb;
+            --borda-escura: #374151;
+            --sombra: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --sucesso: #10b981;
+            --perigo: #ef4444;
+            --radius: 12px;
         }
-        
+
         [data-theme="dark"] {
             --bg-principal: #111827;
             --bg-card: #1f2937;
             --texto: #f3f4f6;
+            --texto-secundario: #9ca3af;
             --texto-tabela: #f3f4f6;
             --nav-bg: #111827;
+            --borda: #374151;
+            --borda-escura: #4b5563;
         }
-        /* Configurações Globais */
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
-        
+
         body {
-            background-color: var(--bg-principal);
+            background: var(--bg-principal);
             color: var(--texto);
             line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            transition: background-color .3s, color .3s;
         }
-        /* Cabeçalho */
-        
-        header {
-            background-color: var(--header-bg);
-            padding: 2rem 1rem;
-            text-align: center;
-            border-bottom: 3px solid var(--detalhe);
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
-        
-        header h1 {
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        /* Barra promocional — novidade do código, visual adaptado */
+        .top-bar {
+            background: var(--header-bg);
+            border-bottom: 2px solid var(--detalhe);
             color: var(--detalhe);
-            font-size: 2.5rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
+            font-size: .82rem;
+            font-weight: 700;
+            text-align: center;
+            padding: .45rem 1rem;
+            letter-spacing: .4px;
         }
-        /* Navegação */
-        
-        nav {
-            background-color: var(--nav-bg);
+
+        /* Cabeçalho */
+        header {
+            background: var(--header-bg);
+            padding: 1.2rem 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,.08);
             position: sticky;
             top: 0;
             z-index: 100;
-            display: flex;
-            justify-content: center;
-            padding: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,.12);
         }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1.5rem;
-            margin: 0 0.5rem;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
+
+        .logo {
+            color: #fff;
+            font-size: 1.65rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            white-space: nowrap;
         }
-        
-        nav a:hover {
-            background-color: var(--detalhe);
-            color: #111827;
+
+        .logo span {
+            color: var(--detalhe);
         }
-        
-        .nav-busca-wrapper {
+
+        .logo-mark {
+            color: var(--detalhe);
+            font-size: 1.3rem;
+        }
+
+        .search-container {
+            flex: 1 1 420px;
+            max-width: 470px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.15);
+            padding: .72rem 1rem .72rem 2.65rem;
+            border-radius: 30px;
+            color: #fff;
+            outline: none;
+            transition: .3s;
+        }
+
+        .search-container input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-container input:focus {
+            border-color: var(--detalhe);
+            box-shadow: 0 0 0 3px var(--detalhe-soft);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            pointer-events: none;
+        }
+
+        .header-actions {
             display: flex;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.08);
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 0 0.75rem;
-            margin: 0 0.5rem;
-            transition: border-color 0.3s, background-color 0.3s;
+            gap: .7rem;
         }
-        
-        .nav-busca-wrapper:focus-within {
+
+        .btn-icon-badge {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.15);
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: .3s;
+        }
+
+        .btn-icon-badge:hover {
             border-color: var(--detalhe);
-            background-color: rgba(245, 158, 11, 0.08);
-        }
-        
-        .nav-busca-wrapper svg {
-            width: 16px;
-            height: 16px;
-            stroke: #9ca3af;
-            flex-shrink: 0;
-            transition: stroke 0.3s;
-        }
-        
-        .nav-busca-wrapper:focus-within svg {
-            stroke: var(--detalhe);
-        }
-        
-        #campo-busca {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: white;
-            font-size: 0.9rem;
-            padding: 0.45rem 0.5rem;
-            width: 180px;
-            transition: width 0.3s;
-        }
-        
-        #campo-busca::placeholder {
-            color: #6b7280;
-        }
-        
-        #campo-busca:focus {
-            width: 220px;
-        }
-        
-        .nenhum-resultado {
-            text-align: center;
-            padding: 2rem;
-            color: #9ca3af;
-            font-style: italic;
-        }
-        
-        .highlight {
-            background-color: rgba(245, 158, 11, 0.3);
-            border-radius: 3px;
-            padding: 0 2px;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-busca-wrapper {
-                width: 90%;
-                margin: 0;
-            }
-            #campo-busca {
-                width: 100%;
-            }
-            #campo-busca:focus {
-                width: 100%;
-            }
-        }
-        /* Container Principal */
-        
-        main {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        /* Banner */
-        
-        .banner {
-            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
             color: var(--detalhe);
-            padding: 3rem;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 3rem;
+            transform: translateY(-2px);
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--detalhe);
+            color: #111827;
+            font-size: .7rem;
+            font-weight: 800;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navegação original preservada */
+        nav {
+            background: var(--nav-bg);
+            position: sticky;
+            top: 66px;
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: .2rem;
+            padding: .7rem 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,.12);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: .5rem 1.1rem;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: var(--detalhe);
+            color: #111827;
+        }
+
+        .nav-theme {
+            background: transparent;
+            border: 0;
+            color: #fff;
+            padding: .5rem 1.1rem;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .nav-theme:hover {
+            background: var(--detalhe);
+            color: #111827;
+        }
+
+        /* Overlay + drawers — novidade estrutural */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.70);
+            display: none;
+            z-index: 150;
+            backdrop-filter: blur(2px);
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 390px;
+            height: 100vh;
+            background: var(--bg-card);
+            color: var(--texto);
+            border-left: 1px solid var(--borda);
+            padding: 1.5rem;
+            z-index: 151;
+            transition: right .35s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -12px 0 30px rgba(0,0,0,.25);
+        }
+
+        .drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--borda);
+            margin-bottom: 1.25rem;
+        }
+
+        .drawer-header h3 {
+            color: var(--detalhe);
+        }
+
+        .drawer-nav li {
+            margin-bottom: .55rem;
+        }
+
+        .drawer-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: .8rem 1rem;
+            border-radius: 8px;
+            color: var(--texto-secundario);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .drawer-nav a:hover {
+            background: var(--detalhe-soft);
+            color: var(--detalhe-hover);
+        }
+
+        /* Views */
+        .page-view {
+            display: none;
+            padding: 2.5rem 6%;
+            animation: fadeIn .35s ease;
+            flex: 1;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Container original */
+        .content-width {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Hero — mesma linguagem visual do banner original */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 1rem 0 4rem;
+        }
+
+        .hero-copy {
+            max-width: 700px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: .35rem .85rem;
             border: 1px solid var(--detalhe);
+            border-radius: 20px;
+            color: var(--detalhe);
+            background: var(--detalhe-soft);
+            font-size: .78rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
         }
-        
-        .banner h2 {
-            font-size: 2rem;
+
+        .hero-title {
+            font-size: clamp(2.25rem, 5vw, 3.55rem);
+            line-height: 1.12;
+            margin-bottom: 1.2rem;
         }
-        /* Tabela de Produtos */
-        
+
+        .hero-title span {
+            color: var(--detalhe);
+        }
+
+        .hero-desc {
+            color: var(--texto-secundario);
+            font-size: 1.05rem;
+            margin-bottom: 1.7rem;
+            max-width: 680px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .8rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-top: 2rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid var(--borda);
+        }
+
+        .stat-item h3 {
+            font-size: 1.55rem;
+            color: var(--detalhe);
+        }
+
+        .stat-item p {
+            color: var(--texto-secundario);
+            font-size: .82rem;
+        }
+
+        .hero-image-box {
+            position: relative;
+        }
+
+        .hero-image-box img {
+            width: 100%;
+            display: block;
+            border-radius: var(--radius);
+            border: 1px solid var(--borda);
+            box-shadow: var(--sombra);
+            min-height: 310px;
+            object-fit: cover;
+        }
+
+        .floating-card {
+            position: absolute;
+            left: -18px;
+            bottom: -18px;
+            background: var(--bg-card);
+            border: 1px solid var(--detalhe);
+            border-radius: 10px;
+            padding: .9rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,.16);
+            max-width: 280px;
+        }
+
+        .floating-card strong {
+            display: block;
+            font-size: .85rem;
+        }
+
+        .floating-card small {
+            color: var(--texto-secundario);
+            font-size: .72rem;
+        }
+
+        /* Botões no padrão original */
+        .btn-gold,
+        .btn-comprar,
+        .btn-enviar {
+            border: none;
+            background: var(--detalhe);
+            color: #111827;
+            padding: .72rem 1.15rem;
+            border-radius: 20px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-gold:hover,
+        .btn-comprar:hover,
+        .btn-enviar:hover {
+            background: var(--detalhe-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--borda);
+            color: var(--texto);
+            padding: .72rem 1.15rem;
+            border-radius: 20px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .25s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--detalhe);
+            color: var(--detalhe);
+            background: var(--detalhe-soft);
+        }
+
+        /* Títulos */
         .secao-titulo {
             text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            margin-bottom: .55rem;
+            font-size: 2rem;
         }
-        
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--texto-secundario);
+            margin-bottom: 2rem;
+        }
+
+        /* Catálogo por cards — novidade estrutural */
+        .catalog-section {
+            padding-top: 3rem;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: .65rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .tab-btn {
+            background: var(--bg-card);
+            color: var(--texto-secundario);
+            border: 1px solid var(--borda);
+            padding: .55rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--detalhe);
+            color: #111827;
+            border-color: var(--detalhe);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+            gap: 1.35rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: var(--radius);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            box-shadow: 0 6px 14px rgba(0,0,0,.06);
+            transition: .25s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--detalhe);
+            box-shadow: 0 14px 28px rgba(0,0,0,.10);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: .9rem;
+            background: var(--bg-principal);
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .35s;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .tag-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 2;
+            background: var(--detalhe);
+            color: #111827;
+            font-size: .7rem;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 4px;
+        }
+
+        .product-stars {
+            color: var(--detalhe);
+            font-size: .82rem;
+            margin-bottom: .45rem;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: .8rem;
+        }
+
+        .product-price-box {
+            margin-top: auto;
+            padding-top: .8rem;
+            border-top: 1px solid var(--borda);
+            margin-bottom: .9rem;
+        }
+
+        .price-pix {
+            color: var(--detalhe-hover);
+            font-size: 1.28rem;
+            font-weight: 900;
+        }
+
+        .price-pix small {
+            font-size: .72rem;
+            color: var(--detalhe);
+        }
+
+        .price-card-installment {
+            color: var(--texto-secundario);
+            font-size: .76rem;
+        }
+
+        /* Lista vazia */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px dashed var(--borda);
+            padding: 2rem;
+            border-radius: var(--radius);
+            color: var(--texto-secundario);
+        }
+
+        /* Tabela original — mantida como padrão visual, agora como área de "resumo rápido" */
         .tabela-container {
             overflow-x: auto;
             background: var(--bg-card);
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: var(--radius);
+            box-shadow: var(--sombra);
+            border: 1px solid var(--borda);
+            margin-top: 3rem;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             color: var(--texto-tabela);
         }
-        
+
         th {
-            background-color: #111827;
+            background: var(--header-bg);
             color: var(--detalhe);
             padding: 1rem;
             text-align: left;
         }
-        
+
         td {
             padding: 1rem;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid var(--borda);
         }
-        
-        [data-theme="light"] td {
-            border-bottom: 1px solid #eee;
-        }
-        
+
         tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.05);
+            background: rgba(0,0,0,.025);
         }
-        
+
         tr:hover {
-            background-color: rgba(245, 158, 11, 0.1);
+            background: var(--detalhe-soft);
         }
-        /* Botão Estilizado */
-        
-        .btn-comprar {
-            background-color: var(--detalhe);
-            color: #111827;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .btn-comprar:hover {
-            background-color: #d97706;
-            transform: scale(1.05);
-        }
-        /* Formulário */
-        
-        .contato-container {
+
+        /* Assistência técnica */
+        .service-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             background: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: var(--radius);
             padding: 2rem;
-            border-radius: 12px;
-            max-width: 500px;
-            margin: 3rem auto;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--sombra);
+            max-width: 1100px;
+            margin: 0 auto;
         }
-        
+
+        .panel {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+        }
+
         .form-group {
             margin-bottom: 1rem;
         }
-        
-        label {
+
+        .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        input,
-        textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            outline: none;
-            background-color: var(--bg-principal);
+            margin-bottom: .45rem;
+            font-weight: 700;
             color: var(--texto);
         }
-        
-        input:focus,
-        textarea:focus {
-            border-color: var(--detalhe);
-        }
-        
-        .btn-enviar {
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea,
+        .contato-container input,
+        .contato-container textarea {
             width: 100%;
-            background-color: var(--detalhe);
-            color: #111827;
-            padding: 1rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+            padding: .8rem .9rem;
+            border: 1px solid var(--borda);
+            border-radius: 7px;
+            outline: none;
+            background: var(--bg-principal);
+            color: var(--texto);
+            transition: .2s;
         }
-        
-        .btn-enviar:hover {
-            background-color: #d97706;
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus,
+        .contato-container input:focus,
+        .contato-container textarea:focus {
+            border-color: var(--detalhe);
+            box-shadow: 0 0 0 3px var(--detalhe-soft);
         }
-        /* Rodapé */
-        
-        footer {
-            background-color: #111827;
-            color: #9ca3af;
+
+        .estimate-box {
+            background: var(--detalhe-soft);
+            border: 1px dashed var(--detalhe);
+            border-radius: 10px;
+            padding: 1.5rem;
             text-align: center;
-            padding: 2rem;
+            margin-top: 1rem;
+        }
+
+        .estimate-box .estimate-value {
+            font-size: 1.75rem;
+            color: var(--detalhe-hover);
+            font-weight: 900;
+        }
+
+        /* Depoimentos */
+        .reviews-section {
+            padding-top: 4rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+
+        .review-card {
+            background: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: var(--radius);
+            padding: 1.35rem;
+            box-shadow: 0 6px 14px rgba(0,0,0,.05);
+        }
+
+        .review-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: .9rem;
+        }
+
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--detalhe);
+        }
+
+        /* Contato / conta */
+        .contact-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .contato-container,
+        .account-container,
+        .info-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: var(--radius);
+            padding: 1.7rem;
+            box-shadow: var(--sombra);
+        }
+
+        .info-list p {
+            margin-bottom: .8rem;
+        }
+
+        .status-open {
+            background: var(--detalhe-soft);
+            border: 1px solid rgba(245,158,11,.4);
+            padding: .8rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .account-container {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid var(--detalhe);
+            color: var(--detalhe);
+            background: var(--detalhe-soft);
+            font-size: 1.6rem;
+        }
+
+        .activity-box {
+            background: var(--bg-principal);
+            border: 1px solid var(--borda);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 180;
+            background: var(--bg-card);
+            border: 1px solid var(--detalhe);
+            color: var(--texto);
+            padding: .9rem 1.2rem;
+            border-radius: 10px;
+            box-shadow: var(--sombra);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(120px);
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Rodapé */
+        footer {
+            background: var(--header-bg);
+            color: #9ca3af;
+            padding: 3rem 6% 1.5rem;
             margin-top: 4rem;
         }
-        /*responsividade*/
-        
-        @media (max-width: 768px) {
-            /* Ajuste do Cabeçalho e Nav */
-            header h1 {
-                font-size: 1.8rem;
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.3fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--detalhe);
+            margin-bottom: .8rem;
+        }
+
+        .footer-col p,
+        .footer-col li {
+            font-size: .88rem;
+            margin-bottom: .55rem;
+        }
+
+        .footer-col li a:hover {
+            color: var(--detalhe);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.10);
+            padding-top: 1rem;
+            text-align: center;
+            font-size: .82rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1000px) {
+            header {
+                flex-wrap: wrap;
             }
+
+            .search-container {
+                order: 3;
+                flex-basis: 100%;
+                max-width: none;
+            }
+
             nav {
-                flex-direction: column;
-                /* Links um abaixo do outro no mobile */
-                align-items: center;
-                gap: 10px;
+                top: 119px;
             }
-            nav a {
-                width: 90%;
+
+            .hero,
+            .service-container,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
                 text-align: center;
-                margin: 0;
             }
-            /* Transformando a Tabela em Cards */
-            /* Isso impede que o usuário tenha que dar scroll lateral para ver os preços */
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions,
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-image-box {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .page-view {
+                padding: 1.7rem 1rem;
+            }
+
+            header {
+                padding: .9rem 1rem;
+            }
+
+            nav {
+                top: 116px;
+                gap: .15rem;
+                overflow-x: auto;
+                justify-content: flex-start;
+            }
+
+            nav a,
+            .nav-theme {
+                white-space: nowrap;
+                padding: .5rem .8rem;
+                font-size: .85rem;
+            }
+
+            .logo {
+                font-size: 1.35rem;
+            }
+
+            .header-actions {
+                margin-left: auto;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .floating-card {
+                position: static;
+                margin-top: .8rem;
+                max-width: none;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .tabela-container {
+                border-radius: 9px;
+            }
+
             table,
             thead,
             tbody,
@@ -331,135 +1010,383 @@
             tr {
                 display: block;
             }
+
             thead tr {
                 position: absolute;
                 top: -9999px;
                 left: -9999px;
             }
+
             tr {
-                border: 1px solid #ccc;
-                margin-bottom: 1rem;
+                border: 1px solid var(--borda);
+                margin-bottom: .8rem;
                 border-radius: 8px;
+                overflow: hidden;
             }
+
             td {
                 border: none;
                 position: relative;
-                padding-left: 50%;
+                padding-left: 46%;
                 text-align: right;
             }
-            td:before {
+
+            td::before {
                 content: attr(data-label);
-                /* Puxa o nome da coluna via HTML */
                 position: absolute;
                 left: 10px;
-                width: 45%;
-                padding-right: 10px;
-                white-space: nowrap;
+                width: 40%;
                 text-align: left;
-                font-weight: bold;
+                font-weight: 800;
                 color: var(--detalhe);
             }
+
             .btn-comprar {
                 width: 100%;
-                text-align: center;
             }
         }
     </style>
 </head>
 
 <body>
+    <div class="overlay" id="overlay" onclick="closeAllDrawers()" aria-hidden="true"></div>
+
+    <div class="toast" id="toast" role="alert" aria-live="assertive">
+        <span aria-hidden="true">✓</span>
+        <span id="toastMsg">Produto adicionado ao carrinho!</span>
+    </div>
 
     <header>
-        <h1>GARAPATECH</h1>
+        <div class="logo" onclick="navigateTo('homeView')" role="button" tabindex="0" aria-label="Voltar para a página inicial">
+            <span class="logo-mark">▣</span>
+            GARAPA<span>TECH</span>
+        </div>
+
+        <div class="search-container">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input type="text" id="searchInput" placeholder="Buscar produtos, acessórios ou modelos..." oninput="filterProducts()" aria-label="Campo de busca">
+        </div>
+
+        <div class="header-actions">
+            <button class="btn-icon-badge" onclick="openCartDrawer()" title="Carrinho" aria-label="Abrir carrinho">
+                🛒
+                <span class="badge-count" id="cartCount">0</span>
+            </button>
+            <button class="btn-icon-badge" onclick="openNavDrawer()" title="Menu" aria-label="Abrir menu">
+                ☰
+            </button>
+        </div>
     </header>
 
-    <nav>
-        <a href="#inicio">Início</a>
-        <a href="#produtos">Produtos</a>
-        <a href="#contatos">Contatos</a>
-        <a href="carrinho.html">Carrinho</a>
-        <a href="#" id="btn-dark">Modo Escuro</a>
-        <div class="nav-busca-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-            <input type="text" id="campo-busca" placeholder="Buscar produto..." autocomplete="off">
-        </div>
+    <nav aria-label="Navegação principal">
+        <a href="#" onclick="navigateTo('homeView'); return false;" class="active" id="nav-home">Início</a>
+        <a href="#" onclick="scrollToCatalog(); return false;">Produtos</a>
+        <a href="#" onclick="navigateTo('servicesView'); return false;">Assistência</a>
+        <a href="#" onclick="navigateTo('contactView'); return false;">Contatos</a>
+        <a href="#" onclick="navigateTo('accountView'); return false;">Minha Conta</a>
+        <button class="nav-theme" id="btn-dark" onclick="toggleTheme()"></button>
     </nav>
 
-    <main id="inicio">
+    <!-- MENU LATERAL -->
+    <div class="drawer" id="navDrawer" aria-label="Menu principal">
+        <div class="drawer-header">
+            <h3>☰ Navegação</h3>
+            <button class="btn-icon-badge" onclick="closeAllDrawers()" aria-label="Fechar menu">×</button>
+        </div>
+        <ul class="drawer-nav">
+            <li><a onclick="navigateTo('homeView')">⌂ Página Inicial</a></li>
+            <li><a onclick="navigateTo('servicesView')">🛠 Assistência Técnica</a></li>
+            <li><a onclick="openCartDrawer()">🛒 Carrinho</a></li>
+            <li><a onclick="navigateTo('contactView')">✉ Suporte & Contato</a></li>
+            <li><a onclick="navigateTo('accountView')">◯ Minha Conta</a></li>
+        </ul>
+    </div>
 
-        <section class="banner">
-            <h2>PREÇO E QUALIDADE</h2>
-            <h3>VOCÊ SÓ ENCONTRA AQUI!</h3>
-        </section>
+    <!-- CARRINHO LATERAL -->
+    <div class="drawer" id="cartDrawer" style="max-width: 430px;" aria-label="Carrinho de compras">
+        <div class="drawer-header">
+            <h3>🛒 Seu Carrinho</h3>
+            <button class="btn-icon-badge" onclick="closeAllDrawers()" aria-label="Fechar carrinho">×</button>
+        </div>
 
-        <section id="produtos">
-            <h2 class="secao-titulo">🏷️ Catálogo de Produtos</h2>
-            <div class="tabela-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Preço</th>
-                            <th>Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Produto"><strong>Processador Intel i7</strong></td>
-                            <td data-label=" Preço ">R$ 1.800,00</td>
-                            <td data-label="Ação "><button class="btn-comprar " onclick="adicionarAoCarrinho(1, 'Processador Intel i7', 1800.00) ">Adicionar ao carrinho</button></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Produto "><strong>Placa Mãe AM4 Pcyes</strong></td>
-                            <td data-label="Preço ">R$ 450,00</td>
-                            <td data-label="Ação "><button class="btn-comprar" onclick="adicionarAoCarrinho(2, 'Placa Mãe AM4 Pcyes', 450.00)">Adicionar ao carrinho</button></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Produto "><strong>SSD 128 GB</strong></td>
-                            <td data-label="Preço ">R$ 250,00</td>
-                            <td data-label="Ação "><button class="btn-comprar" onclick="adicionarAoCarrinho(3, 'SSD 128 GB', 250.00)">Adicionar ao carrinho</button></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Produto "><strong>Monitor 28' LG</strong></td>
-                            <td data-label="Preço ">R$ 899,90</td>
-                            <td data-label="Ação "><button class="btn-comprar" onclick="adicionarAoCarrinho(4, 'Monitor 28\' LG', 899.90)">Adicionar ao carrinho</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div id="cartItemsContainer" style="flex:1; overflow:auto; padding-right:4px;"></div>
+
+        <div style="border-top:1px solid var(--borda); padding-top:1rem; margin-top:1rem;">
+            <div style="display:flex;justify-content:space-between;color:var(--texto-secundario);font-size:.9rem;">
+                <span>Subtotal:</span><span id="cartSubtotal">R$ 0,00</span>
             </div>
-        </section>
+            <div style="display:flex;justify-content:space-between;font-size:1.3rem;font-weight:900;margin: .5rem 0 1rem;">
+                <span>Total no PIX:</span><span id="cartTotal" style="color:var(--detalhe);">R$ 0,00</span>
+            </div>
+            <button class="btn-gold" style="width:100%;" onclick="checkout()">Finalizar Compra</button>
+        </div>
+    </div>
 
-        <section id="contatos">
-            <div class="contato-container ">
-                <h2 class="secao-titulo " style="margin-bottom: 2rem; ">✉️ Fale Conosco</h2>
-                <form action="# ">
-                    <div class="form-group ">
-                        <label for="nome ">Nome Completo</label>
-                        <input type="text " id="nome " placeholder="Seu nome " required>
+    <!-- ========================= PÁGINA INICIAL ========================= -->
+    <section id="homeView" class="page-view active">
+        <div class="content-width">
+            <div class="hero" id="inicio">
+                <div class="hero-copy">
+                    <div class="eyebrow">⚡ GARAPATECH • PREÇO E QUALIDADE</div>
+                    <h1 class="hero-title">Sua vida digital em <span>mãos especialistas</span>.</h1>
+                    <p class="hero-desc">
+                        Reparo de alta precisão, assistência técnica e um catálogo completo de eletrônicos e acessórios,
+                        mantendo o visual, as cores e a identidade da Garapatech original.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn-gold" onclick="navigateTo('servicesView')">🛠 Agendar Assistência</button>
+                        <button class="btn-outline" onclick="scrollToCatalog()">🏷 Explorar Produtos</button>
                     </div>
-                    <div class="form-group ">
-                        <label for="email ">E-mail</label>
-                        <input type="email " id="email " placeholder="seu@email.com " required>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>+12.000</h3>
+                            <p>Consertos realizados</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>99,4%</h3>
+                            <p>Satisfação de clientes</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>90 dias</h3>
+                            <p>Garantia expressa</p>
+                        </div>
                     </div>
-                    <div class="form-group ">
-                        <label for="msg ">Mensagem</label>
-                        <textarea id="msg " rows="4 " placeholder="Como podemos ajudar? "></textarea>
+                </div>
+
+                <div class="hero-image-box">
+                    <img src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?auto=format&fit=crop&w=800&q=80"
+                         alt="Profissional realizando manutenção em placa de circuito de smartphone"
+                         loading="eager">
+                    <div class="floating-card">
+                        <span style="font-size:1.6rem;color:var(--detalhe);" aria-hidden="true">✓</span>
+                        <div>
+                            <strong>Peças 100% homologadas</strong>
+                            <small>Transparência total no orçamento</small>
+                        </div>
                     </div>
-                    <button onclick="alert( 'Mensagem enviada!') " type="submit " class="btn-enviar ">Enviar Mensagem</button>
+                </div>
+            </div>
+
+            <section id="catalogSection" class="catalog-section">
+                <h2 class="secao-titulo">🏷️ Eletrônicos em Destaque</h2>
+                <p class="section-subtitle">A nova estrutura de produtos, preservando o padrão visual da sua principal.html.</p>
+
+                <div class="category-tabs" role="tablist" aria-label="Categorias de produtos">
+                    <button class="tab-btn active" onclick="filterCategory('all', this)">Todos os Produtos</button>
+                    <button class="tab-btn" onclick="filterCategory('audio', this)">Áudio</button>
+                    <button class="tab-btn" onclick="filterCategory('chargers', this)">Carregadores & Cabos</button>
+                    <button class="tab-btn" onclick="filterCategory('gadgets', this)">Gadgets</button>
+                    <button class="tab-btn" onclick="filterCategory('accessories', this)">Acessórios</button>
+                    <button class="tab-btn" onclick="filterCategory('computers', this)">Informática</button>
+                </div>
+
+                <div class="products-grid" id="productsGrid"></div>
+
+                <div class="tabela-container" aria-label="Resumo de produtos">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Preço de referência</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="reviews-section" aria-labelledby="reviewsTitle">
+                <h2 id="reviewsTitle" class="secao-titulo">O que nossos clientes dizem</h2>
+                <p class="section-subtitle">Ainda não há nenhum comentário.</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- ========================= ASSISTÊNCIA ========================= -->
+    <section id="servicesView" class="page-view">
+        <div class="content-width">
+            <div style="text-align:center;margin-bottom:2rem;">
+                <h2 class="secao-titulo">🛠 Simulador de Orçamento</h2>
+                <p class="section-subtitle">Selecione as especificações do aparelho para uma estimativa instantânea.</p>
+            </div>
+
+            <div class="service-container">
+                <div class="panel">
+                    <h3 style="color:var(--detalhe);margin-bottom:1.2rem;">Dados do Aparelho</h3>
+                    <form id="serviceForm" onchange="calculateEstimate()">
+                        <div class="form-group">
+                            <label for="brandSelect">Marca do Dispositivo</label>
+                            <select id="brandSelect" required>
+                                <option value="">Selecione a marca...</option>
+                                <option>Apple</option>
+                                <option>Samsung</option>
+                                <option>Xiaomi</option>
+                                <option>Motorola</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modelInput">Modelo Específico</label>
+                            <input id="modelInput" type="text" placeholder="Ex.: iPhone 13 Pro, Galaxy S23 Ultra" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="issueSelect">Tipo de Reparo Necessário</label>
+                            <select id="issueSelect" required>
+                                <option value="">Selecione o defeito...</option>
+                                <option value="Tela Quebrada / Touch" data-time="45 min" data-warranty="90 Dias">Troca de Display / Tela</option>
+                                <option value="Bateria Viciada / Saúde Baixa" data-time="30 min" data-warranty="90 Dias">Troca de Bateria</option>
+                                <option value="Conector de Carga / Porta USB" data-time="60 min" data-warranty="90 Dias">Reparo de Conector de Carga</option>
+                                <option value="Desoxidação (Molhou)" data-time="24 Horas" data-warranty="60 Dias">Banho Químico</option>
+                                <option value="Reparo Avançado de Placa" data-time="48 Horas" data-warranty="90 Dias">Reparo de Placa-Mãe</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="observations">Observações Adicionais</label>
+                            <textarea id="observations" rows="4" placeholder="Ex.: vidro traseiro trincado também..."></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div style="display:flex;flex-direction:column;justify-content:center;">
+                    <h3 style="color:var(--detalhe);margin-bottom:1rem;">Estimativa do Serviço</h3>
+                    <div class="estimate-box" aria-live="polite">
+                        <p style="color:var(--texto-secundario);">Tempo Estimado</p>
+                        <div class="estimate-value" id="estTime">-- min</div>
+                        <p style="color:var(--texto-secundario);margin-top:1rem;">Garantia Coberta</p>
+                        <div class="estimate-value" id="estWarranty" style="font-size:1.35rem;">--</div>
+
+                        <button class="btn-gold" style="width:100%;margin-top:1.5rem;" onclick="sendWhatsAppBudget()">Enviar orçamento pelo WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= CONTATO ========================= -->
+    <section id="contactView" class="page-view">
+        <div class="content-width">
+            <div style="text-align:center;margin-bottom:2rem;">
+                <h2 class="secao-titulo">✉️ Fale Conosco</h2>
+                <p class="section-subtitle">Suporte ao cliente e informações da loja.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contato-container">
+                    <h3 style="color:var(--detalhe);margin-bottom:1.1rem;">Envie uma Mensagem</h3>
+                    <form onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="contactName">Nome Completo</label>
+                            <input id="contactName" type="text" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">E-mail ou WhatsApp</label>
+                            <input id="contactEmail" type="text" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMsg">Mensagem</label>
+                            <textarea id="contactMsg" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-enviar" style="width:100%;">Enviar Mensagem</button>
+                    </form>
+                </div>
+
+                <div class="info-panel">
+                    <h3 style="color:var(--detalhe);margin-bottom:1.1rem;">Informações da Loja</h3>
+                    <div class="info-list">
+                        <p>📍 <strong>Endereço:</strong> Acarape, CE</p>
+                        <p>📱 <strong>WhatsApp:</strong> (85) 99219-2625</p>
+                        <p>✉ <strong>E-mail:</strong> xxxxxxxxxxxxxxxxxxx</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================= CONTA ========================= -->
+    <section id="accountView" class="page-view">
+        <div class="account-container">
+            <div id="loginBlock">
+                <h2 class="secao-titulo" style="font-size:1.75rem;">Acessar Conta</h2>
+                <p class="section-subtitle" style="margin-bottom:1.5rem;">Gerencie seus pedidos e histórico de assistência.</p>
+
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">E-mail Cadastrado</label>
+                        <input id="loginEmail" type="email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Senha</label>
+                        <input id="loginPassword" type="password" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" class="btn-gold" style="width:100%;margin-bottom:.7rem;">Entrar na Conta</button>
+                    <button type="button" class="btn-outline" style="width:100%;" onclick="alert('Instruções de criação de conta foram enviadas para seu e-mail!')">Criar Nova Conta</button>
                 </form>
             </div>
-        </section>
 
-    </main>
+            <div id="profileBlock" style="display:none;text-align:center;">
+                <div class="profile-avatar">◯</div>
+                <h3 style="margin-bottom:.2rem;">Bem-vindo(a), Cliente Garapatech</h3>
+                <p style="color:var(--texto-secundario);font-size:.85rem;margin-bottom:1.4rem;">cliente@garapatech.com.br</p>
+
+                <div class="activity-box" style="text-align:left;">
+                    <div style="font-weight:800;color:var(--detalhe);margin-bottom:.5rem;">Últimas Atividades</div>
+                    <p>📦 <strong>Pedido #9412:</strong> Fone Noise Cancelling (Entregue)</p>
+                    <p>🛠 <strong>OS #1204:</strong> Troca de Bateria iPhone 13 (Concluído)</p>
+                </div>
+
+                <button class="btn-outline" style="width:100%;border-color:var(--perigo);color:var(--perigo);" onclick="handleLogout()">Encerrar Sessão</button>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p> 2025 GARAPATECH.</p>
+        <div class="footer-content">
+            <div>
+                <div class="logo" style="margin-bottom:1rem;">
+                    <span class="logo-mark">▣</span> GARAPATECH
+                </div>
+                <p>Referência em assistência técnica especializada e comércio de acessórios de tecnologia.</p>
+            </div>
 
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#" onclick="navigateTo('homeView');return false;">Início</a></li>
+                    <li><a href="#" onclick="navigateTo('servicesView');return false;">Assistência</a></li>
+                    <li><a href="#" onclick="navigateTo('contactView');return false;">Contato</a></li>
+                    <li><a href="#" onclick="navigateTo('accountView');return false;">Minha Conta</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Políticas</h4>
+                <ul>
+                    <li><a href="#" onclick="return false;">Termos de Garantia</a></li>
+                    <li><a href="#" onclick="return false;">Envios e Prazos</a></li>
+                    <li><a href="#" onclick="return false;">Privacidade</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Formas de Pagamento</h4>
+                <p style="font-size:1.15rem;">PIX • Visa • Mastercard • Apple Pay</p>
+                <p style="color:var(--detalhe);font-weight:800;">10% OFF no PIX</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 GARAPATECH. Todos os direitos reservados.
+        </div>
     </footer>
 
     <script src="index.js"></script>
 </body>
-
 </html>
