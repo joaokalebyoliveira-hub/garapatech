@@ -2,16 +2,14 @@
         const productsDatabase = [
             { id: 1, category: 'audio', name: 'Fone Headphone Wireless ANC Garapa Pro', price: 349.90, tag: 'Mais Vendido', stars: 5, img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80' },
             { id: 2, category: 'chargers', name: 'Carregador GaN Fast Charge 65W Triple Port', price: 159.90, tag: 'Ultra Rápido', stars: 5, img: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=600&q=80' },
-            { id: 3, category: 'gadgets', name: 'Smartwatch Titanium Ultra Edition OLED', price: 499.90, tag: 'Lançamento', stars: 5, img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80' },
+            { id: 3, category: 'gadgets', name: 'Smartwatch Titanium Ultra Edition OLED', price: 499.90, tag: 'Lançamento', stars: 5, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCAgzQ1gMoqOT750xkwupNnj-FkZJ4e2ly87yFqlpdgg&s' },
             { id: 4, category: 'chargers', name: 'Cabo Armored Kevlar Type-C to Lightning 2m', price: 69.90, tag: 'Resistente', stars: 5, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe7ePFw9A9wXtoKuBz-0zPnif9ksFHSscl1F9WNOG_RA&s=10' },
-            { id: 5, category: 'accessories', name: 'PowerBank Magnetic Wireless 10.000mAh', price: 239.90, tag: 'MagSafe', stars: 4, img: 'https://images.unsplash.com/photo-1622445268121-ac11f17a2834?auto=format&fit=crop&w=600&q=80' },
-            { id: 6, category: 'accessories', name: 'Suporte Veicular MagSafe com Cooler RGB', price: 149.90, tag: 'Carro', stars: 5, img: 'https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=600&q=80' },
-
-            /* Produtos que já existiam na principal.html */
+            { id: 5, category: 'accessories', name: 'PowerBank Magnetic Wireless 10.000mAh', price: 239.90, tag: 'MagSafe', stars: 4, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvfn1CavE_9lzncmtNS7E_2o2dl-wK17z8H3fUIHsrxg&s=10' },
+            { id: 6, category: 'accessories', name: 'Suporte Veicular MagSafe com Cooler RGB', price: 149.90, tag: 'Carro', stars: 5, img: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTPapvNTHBOaJ7_cV6B91XRg3EiU7pU_ah70qoP8gisTM9oIfk8mVnNbdmTBeidexFVu0weuCIeLJxA6tms87cHZ4CSMfzUJ2xMPVQ1WvLRZtvsdvPg5nboFtsRYP3LucAlbzE7hNA&usqp=CAc' },
             { id: 7, category: 'computers', name: 'Processador Intel i7', price: 1800.00, tag: 'Informática', stars: 5, img: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80' },
             { id: 8, category: 'computers', name: 'Placa Mãe AM4 Pcyes', price: 450.00, tag: 'Informática', stars: 5, img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80' },
-            { id: 9, category: 'computers', name: 'SSD 128 GB', price: 250.00, tag: 'Informática', stars: 5, img: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80' },
-            { id: 10, category: 'computers', name: "Monitor 28' LG", price: 899.90, tag: 'Informática', stars: 5, img: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80' }
+            { id: 9, category: 'computers', name: 'Water Cooler 360mm Corsair', price: 250.00, tag: 'Informática', stars: 5, img: 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80' },
+            { id: 10, category: 'computers', name: "Monitor iMac 28' Apple", price: 899.90, tag: 'Informática', stars: 5, img: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80' }
         ];
 
         let cart = [];
@@ -218,7 +216,7 @@
                 observations ? `Observações: ${observations}` : ''
             ].filter(Boolean).join('\n');
 
-            window.open(`https://wa.me/5511999998888?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+            window.open(`https://wa.me/5585992192625?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
         }
 
         /* ========================= NAVEGAÇÃO / DRAWERS ========================= */
